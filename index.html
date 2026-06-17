@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifario · Look and feel · Producción</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-RegularItalic.otf') format('opentype'); font-weight: 400; font-style: italic; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-MediumItalic.otf') format('opentype'); font-weight: 500; font-style: italic; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-SemiBoldItalic.otf') format('opentype'); font-weight: 600; font-style: italic; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+  @font-face { font-family: 'Qanelas'; src: url('Qanelas/Qanelas-BoldItalic.otf') format('opentype'); font-weight: 700; font-style: italic; }
+
+  :root {
+    --bg: #f8f5f0;
+    --surface: #ffffff;
+    --surface2: #f0ece5;
+    --border: #e0dbd2;
+    --ink: #1a1814;
+    --ink2: #5a5650;
+    --ink3: #9a948a;
+    --a: #7a3d1e;
+    --a-bg: #faeee8;
+    --a-border: #e8c4b0;
+    --b: #3a4a5a;
+    --b-bg: #ecf0f4;
+    --b-border: #c8d2dc;
+    --ok: #3b6d11;
+    --ok-bg: #eaf3de;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 32px 16px 80px;
+    display: flex;
+    justify-content: center;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 880px; width: 100%; }
+
+  .logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
+  .logo-text { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink3); font-weight: 500; }
+
+  h1 { font-family: 'Qanelas', sans-serif; font-size: clamp(32px, 5vw, 50px); font-weight: 700; line-height: 1.05; margin-bottom: 14px; letter-spacing: -0.5px; }
+  h1 em { font-style: italic; color: var(--a); }
+  h2 { font-family: 'Qanelas', sans-serif; font-size: clamp(26px, 4vw, 36px); font-weight: 600; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.3px; }
+  h2 em { font-style: italic; }
+  h3 { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink3); margin-bottom: 16px; }
+
+  .subtitle { font-size: 14px; color: var(--ink2); line-height: 1.7; max-width: 620px; }
+
+  .doc-meta {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-top: 28px;
+    margin-bottom: 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 600px) { .doc-meta { grid-template-columns: repeat(2, 1fr); } }
+  .meta-item .meta-lbl { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
+  .meta-item .meta-val { font-size: 13px; color: var(--ink); font-weight: 500; }
+
+  .intro {
+    font-family: 'Qanelas', sans-serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--ink2);
+    line-height: 1.55;
+    margin-bottom: 44px;
+    padding-left: 18px;
+    border-left: 2px solid var(--a);
+  }
+
+  .section { margin-bottom: 48px; }
+  .section-head { margin-bottom: 22px; }
+
+  .rate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 650px) { .rate-grid { grid-template-columns: 1fr; } }
+  
+  .rate-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .rate-group.full-width { grid-column: 1 / -1; }
+  .rate-group.accent { border-top: 4px solid var(--a); }
+
+  .rg-header .rg-num { font-family: 'Qanelas', sans-serif; font-style: italic; font-size: 18px; color: var(--a); font-weight: 600; margin-bottom: 4px; }
+  .rg-header .rg-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .rg-header .rg-desc { font-size: 13px; color: var(--ink2); line-height: 1.5; margin-top: 6px; }
+  .rg-header .rg-note { font-size: 12px; color: var(--ink3); font-style: italic; background: var(--surface2); padding: 8px 12px; border-radius: 6px; margin-top: 12px; display: inline-block;}
+
+  .item-row { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); gap: 12px; }
+  .item-row:first-of-type { border-top: none; padding-top: 0; }
+  
+  .item-info { flex: 1; }
+  .item-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .item-price { font-family: 'Qanelas', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; margin-top: 2px; }
+  .item-price small { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; color: var(--ink3); letter-spacing: 0.3px; margin-left: 4px; }
+
+  .qty-control { display: flex; align-items: center; background: var(--surface2); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .qty-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: var(--ink2); font-size: 16px; font-weight: 500; transition: all 0.2s; }
+  .qty-btn:hover { background: var(--border); color: var(--ink); }
+  .qty-val { width: 36px; text-align: center; font-size: 13px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  .calculator-panel {
+    background: var(--ink);
+    color: var(--surface);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 32px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  @media (max-width: 600px) { .calculator-panel { padding: 20px; border-radius: 12px; } }
+  
+  .calc-header { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); margin-bottom: 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center;}
+  .calc-reset { background: rgba(255,255,255,0.1); color: #fff; border: none; padding: 4px 10px; border-radius: 100px; font-size: 10px; cursor: pointer; transition: background 0.2s; letter-spacing: 1px; text-transform: uppercase;}
+  .calc-reset:hover { background: rgba(255,255,255,0.2); }
+
+  .calc-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .calc-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--border); align-items: baseline; }
+  .calc-row.hidden { display: none; }
+  .calc-row .cr-name { flex: 1; border-bottom: 1px dashed rgba(255,255,255,0.2); margin-right: 12px; padding-bottom: 2px; }
+  .calc-row .cr-val { font-weight: 500; color: #fff; font-variant-numeric: tabular-nums; }
+  
+  .calc-total-row { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.2); }
+  .calc-total-lbl { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--surface2); }
+  .calc-total-lbl small { display: block; font-size: 10px; font-weight: 400; color: var(--ink3); letter-spacing: 0; text-transform: none; margin-top: 4px; }
+  .calc-total-val { font-family: 'Qanelas', sans-serif; font-size: 36px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.5px; }
+
+  .terms { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 28px; }
+  @media (max-width: 540px) { .terms { padding: 22px 20px; } }
+  .term-item { padding: 12px 0; border-top: 1px solid var(--border); }
+  .term-item:first-of-type { border-top: none; padding-top: 0; }
+  .term-title { font-size: 12px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--a); margin-bottom: 6px; }
+  .term-body { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+
+  .footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-start; font-size: 12px; color: var(--ink3); }
+  .footer-l { font-family: 'Qanelas', sans-serif; font-style: italic; font-size: 16px; color: var(--ink2); }
+  .footer-r { line-height: 1.6; text-align: right; }
+  @media (max-width: 540px) { .footer-r { text-align: left; } }
+
+  .price-anim { transition: opacity 0.15s; }
+  .price-anim.flash { opacity: 0.3; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="logo-row">
+    <div class="logo-dot"></div>
+    <div class="logo-text">Tragaluz · Narrativas espaciales</div>
+  </div>
+
+  <h1>Tarifas de registro y<br><em>producción de contenidos</em></h1>
+
+  <p class="intro">Presentamos el desglose de nuestras tarifas para los servicios de registro audiovisual en sitio, edición fotográfica arquitectónica y creación de contenido en formato vertical (Reels). Puedes utilizar el cotizador interactivo para estimar costos según el volumen requerido.</p>
+
+  <div class="section">
+    <div class="rate-grid">
+      
+      <!-- Categoría 1 -->
+      <div class="rate-group full-width accent">
+        <div class="rg-header">
+          <div class="rg-num">01</div>
+          <div class="rg-title">Registro Audiovisual en Locación</div>
+          <div class="rg-desc">Captura de material fotográfico y de video en sitio. Les sugiero los esquemas por jornada para optimizar sus costos operativos frente a la tarifa por hora suelta.</div>
+        </div>
+
+        <div class="item-row">
+          <div class="item-info">
+            <div class="item-name">Día de producción completo</div>
+            <div class="item-price" style="font-family: 'Outfit', sans-serif;">$1.130.000 <small>COP / jornada</small></div>
+            <div style="font-size:11px; color:var(--ink3); margin-top:2px;">Jornada de hasta 8 horas.</div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty('dia', -1)">−</button>
+            <div class="qty-val" id="qty-dia">0</div>
+            <button class="qty-btn" onclick="updateQty('dia', 1)">+</button>
+          </div>
+        </div>
+
+        <div class="item-row">
+          <div class="item-info">
+            <div class="item-name">Sesión de registro (4h)</div>
+            <div class="item-price" style="font-family: 'Outfit', sans-serif;">$690.000 <small>COP / jornada</small></div>
+            <div style="font-size:11px; color:var(--ink3); margin-top:2px;">Jornada continua de hasta 4 horas.</div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty('medio', -1)">−</button>
+            <div class="qty-val" id="qty-medio">0</div>
+            <button class="qty-btn" onclick="updateQty('medio', 1)">+</button>
+          </div>
+        </div>
+        
+        <div class="item-row">
+          <div class="item-info">
+            <div class="item-name">Hora de grabación</div>
+            <div class="item-price" style="font-family: 'Outfit', sans-serif;">$240.000 <small>COP / hr</small></div>
+            <div style="font-size:11px; color:var(--ink3); margin-top:2px;">Aplica también para horas adicionales sueltas.</div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty('hora', -1)">−</button>
+            <div class="qty-val" id="qty-hora">0</div>
+            <button class="qty-btn" onclick="updateQty('hora', 1)">+</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Categoría 2 -->
+      <div class="rate-group">
+        <div class="rg-header">
+          <div class="rg-num">02</div>
+          <div class="rg-title">Postproducción Fotográfica</div>
+          <div class="rg-desc">Procesamiento profesional de imágenes arquitectónicas y de producto.</div>
+          <div class="rg-note">Incluye: revelado RAW, limpieza de imagen, corrección de color y entrega en alta resolución lista para editorial.</div>
+        </div>
+        <div class="item-row" style="margin-top:auto;">
+          <div class="item-info">
+            <div class="item-name">Edición y revelado</div>
+            <div class="item-price" style="font-family: 'Outfit', sans-serif;">$50.000 <small>COP / unidad</small></div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty('foto', -1)">−</button>
+            <div class="qty-val" id="qty-foto">0</div>
+            <button class="qty-btn" onclick="updateQty('foto', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categoría 3 -->
+      <div class="rate-group">
+        <div class="rg-header">
+          <div class="rg-num">03</div>
+          <div class="rg-title">Edición de Video (Reels)</div>
+          <div class="rg-desc">Ideal para el formato Reel de 30 a 60 segundos u otros formatos verticales.</div>
+          <div class="rg-note">Incluye: montaje rítmico, colorización, musicalización y exportación final.</div>
+        </div>
+        <div class="item-row" style="margin-top:auto;">
+          <div class="item-info">
+            <div class="item-name">Edición finalizada</div>
+            <div class="item-price" style="font-family: 'Outfit', sans-serif;">$220.000 <small>COP / minuto</small></div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty('video', -1)">−</button>
+            <div class="qty-val" id="qty-video">0</div>
+            <button class="qty-btn" onclick="updateQty('video', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categoría 4 -->
+      <div class="rate-group full-width">
+        <div class="rg-header" style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="rg-num">04</div>
+            <div class="rg-title">Trabajo de Estudio y Curaduría <span style="font-size:10px; background:var(--surface2); padding:3px 8px; border-radius:100px; margin-left:8px; vertical-align:middle; text-transform:uppercase; letter-spacing:1px; color:var(--ink3);">Opcional</span></div>
+            <div class="rg-desc" style="max-width: 600px;">Para requerimientos adicionales de trabajo de mesa, pre-producción, o reuniones de conceptualización editorial que salgan de los esquemas anteriores.</div>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-info">
+            <div class="item-name">Tarifa base de estudio</div>
+            <div class="item-price" style="font-family: 'Outfit', sans-serif;">$105.000 <small>COP / hr</small></div>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty('estudio', -1)">−</button>
+            <div class="qty-val" id="qty-estudio">0</div>
+            <button class="qty-btn" onclick="updateQty('estudio', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="calculator-panel">
+      <div class="calc-header">
+        <span>Cotizador de Proyecto (Estimado)</span>
+        <button class="calc-reset" onclick="resetCalc()">Reiniciar</button>
+      </div>
+      
+      <div class="calc-rows" id="calc-rows">
+        <div class="calc-row hidden" id="row-hora"><div class="cr-name"><span id="lbl-hora">0</span>x Horas sueltas</div><div class="cr-val" id="val-hora">$0</div></div>
+        <div class="calc-row hidden" id="row-medio"><div class="cr-name"><span id="lbl-medio">0</span>x Medios días (4h)</div><div class="cr-val" id="val-medio">$0</div></div>
+        <div class="calc-row hidden" id="row-dia"><div class="cr-name"><span id="lbl-dia">0</span>x Días completos (8h)</div><div class="cr-val" id="val-dia">$0</div></div>
+        <div class="calc-row hidden" id="row-foto"><div class="cr-name"><span id="lbl-foto">0</span>x Fotos editadas</div><div class="cr-val" id="val-foto">$0</div></div>
+        <div class="calc-row hidden" id="row-video"><div class="cr-name"><span id="lbl-video">0</span>x Minutos de Reel</div><div class="cr-val" id="val-video">$0</div></div>
+        <div class="calc-row hidden" id="row-estudio"><div class="cr-name"><span id="lbl-estudio">0</span>x Horas de curaduría</div><div class="cr-val" id="val-estudio">$0</div></div>
+      </div>
+
+      <div class="calc-total-row">
+        <div class="calc-total-lbl">Total Estimado <small>Valores en COP · No incluyen IVA</small></div>
+        <div class="calc-total-val price-anim" style="font-family: 'Outfit', sans-serif;" id="calc-total">$0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h3>Políticas del servicio</h3>
+      <h2>Condiciones <em>Comerciales</em>.</h2>
+    </div>
+    
+    <div class="terms">
+      <div class="term-item">
+        <div class="term-title">Cobertura de las tarifas</div>
+        <div class="term-body">Las tarifas presentadas contemplan la gestión administrativa, los costos operativos del estudio y las retenciones legales aplicables de acuerdo a la normatividad vigente.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-title">Gastos extraordinarios y viáticos</div>
+        <div class="term-body">Los gastos extraordinarios de viáticos por desplazamientos fuera del perímetro urbano, así como costos de producción adicionales (suministro de utilería de styling, rental de equipos técnicos de rodaje y personal adicional), <strong>no están incluidos</strong> en estas tarifas y se cotizarán por separado según las necesidades de cada proyecto particular.<br><br><strong>Equipamiento incluido:</strong> La producción base contempla el uso de 1 cámara de foto, 1 cámara de video con sus lentes y accesorios, 1 trípode, 1 estabilizador y 2 micrófonos.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-title">Impuestos</div>
+        <div class="term-body">Los valores expresados en este tarifario <strong>no incluyen el Impuesto al Valor Agregado (IVA)</strong>, el cual se liquidará en la facturación final según aplique.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-title">Metodología de ejecución</div>
+        <div class="term-body">Toda solicitud de servicio debe estar respaldada por un documento de aprobación (orden de compra, correo de confirmación o contrato) previo a la programación de la fecha de rodaje o inicio de labores de postproducción.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-title">Rondas de revisión</div>
+        <div class="term-body">Para todos los servicios de edición de fotografía y video se incluye <strong>una (1) ronda de ajustes o cambios</strong> sobre el primer corte entregado. Requerimientos de cambios adicionales que superen esta revisión se cotizarán de forma independiente.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-l">tragaluz.<br><span style="font-style:normal;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3)">Narrativas espaciales</span></div>
+    <div class="footer-r">
+      tragaluzstudio@gmail.com<br>
+      3046647238 · 316 3571245<br>
+      tragaluz.myportfolio.com
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Tarifas configuradas según solicitud
+  const rates = {
+    hora: 240000,
+    medio: 690000,
+    dia: 1130000,
+    foto: 50000,
+    video: 220000,
+    estudio: 105000
+  };
+
+  // Estado inicial de cantidades
+  const state = {
+    hora: 0,
+    medio: 0,
+    dia: 0,
+    foto: 0,
+    video: 0,
+    estudio: 0
+  };
+
+  // Función para formatear moneda
+  function fmt(n) {
+    if (n === 0) return "$0";
+    const str = Math.round(n).toLocaleString('es-CO', { maximumFractionDigits: 0 }).replace(/,/g, '.');
+    return "$" + str;
+  }
+
+  // Función para animar el cambio de precio
+  function flashTotal() {
+    const el = document.getElementById('calc-total');
+    el.classList.add('flash');
+    setTimeout(() => el.classList.remove('flash'), 150);
+  }
+
+  // Actualizar cantidad y recalcular
+  function updateQty(key, change) {
+    const newVal = state[key] + change;
+    if (newVal >= 0) {
+      state[key] = newVal;
+      document.getElementById(`qty-${key}`).textContent = newVal;
+      recalculate();
+    }
+  }
+
+  // Reiniciar cotizador
+  function resetCalc() {
+    for (let key in state) {
+      state[key] = 0;
+      document.getElementById(`qty-${key}`).textContent = 0;
+    }
+    recalculate();
+  }
+
+  // Recalcular totales y actualizar UI del panel flotante
+  function recalculate() {
+    let total = 0;
+    let anyActive = false;
+
+    for (let key in state) {
+      const qty = state[key];
+      const row = document.getElementById(`row-${key}`);
+      
+      if (qty > 0) {
+        const subtotal = qty * rates[key];
+        total += subtotal;
+        anyActive = true;
+        
+        // Actualizar fila en el panel
+        document.getElementById(`lbl-${key}`).textContent = qty;
+        document.getElementById(`val-${key}`).textContent = fmt(subtotal);
+        row.classList.remove('hidden');
+      } else {
+        row.classList.add('hidden');
+      }
+    }
+
+    // Actualizar total general con animación
+    document.getElementById('calc-total').textContent = fmt(total);
+    flashTotal();
+
+    // Mostrar un mensaje en el panel si está vacío para mejor UX
+    const rowsContainer = document.getElementById('calc-rows');
+    let emptyMsg = document.getElementById('empty-msg');
+    
+    if (!anyActive) {
+      if (!emptyMsg) {
+        emptyMsg = document.createElement('div');
+        emptyMsg.id = 'empty-msg';
+        emptyMsg.style.fontSize = '12px';
+        emptyMsg.style.color = 'var(--ink3)';
+        emptyMsg.style.fontStyle = 'italic';
+        emptyMsg.style.marginBottom = '8px';
+        emptyMsg.textContent = 'Agrega servicios usando los botones (+) para construir tu cotización.';
+        rowsContainer.appendChild(emptyMsg);
+      }
+    } else {
+      if (emptyMsg) {
+        emptyMsg.remove();
+      }
+    }
+  }
+
+  // Inicializar estado visual al cargar
+  recalculate();
+</script>
+</body>
+</html>
+    </textarea>
+
+    <script>
+        
+        // 1. Script original de la página 1 (Scroll Reveal)
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+
+        // 2. Script para abrir la segunda página en el Iframe (Aislamiento de CSS)
+        let isIframeLoaded = false;
+
+        function openServices() {
+            // Bloqueamos el scroll del fondo
+            document.body.style.overflow = 'hidden'; 
+            document.getElementById('services-view').style.display = 'block';
+
+            if (!isIframeLoaded) {
+                // Tomamos el código original intacto
+                const sourceCode = document.getElementById('page2-source').value;
+                
+                // Botón de regreso que inyectaremos sutilmente dentro del Iframe
+                const backBtnHTML = `
+                <div style="margin-bottom: 24px;">
+                    <button onclick="window.parent.closeServices()" style="background: transparent; border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--ink2); display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        Volver al inicio
+                    </button>
+                </div>
+                `;
+
+                // Colocamos el botón justo antes del logo de la página 2
+                const newSourceCode = sourceCode.replace('<div class="logo-row">', backBtnHTML + '<div class="logo-row">');
+
+                // Escribimos el código en el iframe aislado
+                const iframe = document.getElementById('services-frame');
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(newSourceCode);
+                iframe.contentWindow.document.close();
+                
+                isIframeLoaded = true;
+            }
+        }
+
+        // Esta función es llamada desde DENTRO del iframe
+        function closeServices() {
+            document.body.style.overflow = ''; // Devolvemos el scroll al fondo
+            document.getElementById('services-view').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
